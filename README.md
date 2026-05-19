@@ -422,31 +422,31 @@ These status codes intentionally mirror the conventions used by the Auth Service
 ```mermaid
 erDiagram
     CheckIn {
-        string PK "EVENT#eventId"
-        string SK "CHECKIN#userId"
-        string GSI1PK "USER#userId"
-        string GSI1SK "CHECKIN#eventId"
+        string PK "EVENT-eventId"
+        string SK "CHECKIN-userId"
+        string GSI1PK "USER-userId"
+        string GSI1SK "CHECKIN-eventId"
         string entityType "CheckIn"
         string checkInId "uuid v4"
         string eventId "uuid"
         string userId "uuid"
         string checkedInAt "ISO 8601"
         string method "qr_code or manual"
-        string scannedBy "uuid (nullable)"
-        string reason "string (nullable, manual only)"
-        string tokenJti "string (nullable, qr_code only)"
+        string scannedBy "uuid nullable"
+        string reason "string nullable manual only"
+        string tokenJti "string nullable qr_code only"
         string createdAt "ISO 8601"
     }
 
     QrCodeAudit {
-        string PK "EVENT#eventId"
-        string SK "QRAUDIT#issuedAt#userId"
+        string PK "EVENT-eventId"
+        string SK "QRAUDIT-issuedAt-userId"
         string entityType "QrCodeAudit"
         string userId "uuid"
         string tokenJti "string"
         string issuedAt "ISO 8601"
         string expiresAt "ISO 8601"
-        number ttl "Unix epoch (auto-expire)"
+        number ttl "Unix epoch auto-expire"
     }
 
     CheckIn ||--o{ QrCodeAudit : "issued before"
